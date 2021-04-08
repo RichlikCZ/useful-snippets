@@ -5,11 +5,6 @@ dgrep(){
     docker ps -a | grep "$1" | cut -c1-12 | head -n 1 
 }
 
-# bash into running container
-dbash(){
-    docker exec -ti "$1" /bin/bash
-}
-
 # get all containers
 dclsa(){
     docker container ls -a --format "table {{.ID}}\t{{.Status}}\t{{.Names}}"
@@ -21,7 +16,7 @@ dcls(){
 }
 
 # bash into an existing container
-debash() {
+dbash() {
     docker exec -ti $(dgrep "$1") /bin/bash
 }
 
